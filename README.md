@@ -8,6 +8,11 @@ The system demonstrates how clinical **assertion status (asserted, negated, hypo
 
 The implementation is evaluated on the **i2b2 2012 Temporal Relations dataset**.
 
+# Citation
+If you use this repository, please cite:
+Nair, N. (2025). Negation- and Assertion-Aware Retrieval-Augmented Generation for Clinical Case and Medical Record Retrieval.
+
+
 ---
 
 ## Key Contributions Implemented
@@ -71,3 +76,4 @@ scikit-learn
 sentence-transformers
 rank-bm25
 tqdm
+

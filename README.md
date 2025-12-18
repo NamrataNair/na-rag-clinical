@@ -54,10 +54,6 @@ Copy code
 python experiments/run_baselines.py
 python experiments/run_na_rag.py
 python evaluation/evaluate_retrieval.py
-Citation
-If you use this repository, please cite:
-
-Nair, N. (2025). Negation- and Assertion-Aware Retrieval-Augmented Generation for Clinical Case and Medical Record Retrieval.
 
 License
 Research-only, non-commercial use.

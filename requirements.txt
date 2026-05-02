@@ -1,0 +1,6 @@
+numpy
+scikit-learn
+sentence-transformers
+rank-bm25
+tqdm
+pytest

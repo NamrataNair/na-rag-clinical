@@ -4,10 +4,8 @@ Runs NA-RAG pipeline.
 
 from retrieval.assertion_reranker import rerank
 
-
-def run_na_rag(results):
-    return rerank(results)
-
+def run_na_rag(results, query=None):
+    return rerank(results, query)
 
 if __name__ == "__main__":
     print("Running NA-RAG...")
@@ -18,4 +16,4 @@ if __name__ == "__main__":
     # ]
     # reranked_results = run_na_rag(sample_results)
     # for res in reranked_results:
-    #     print(res)  
+    #     print(res)

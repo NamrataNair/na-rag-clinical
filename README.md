@@ -61,19 +61,25 @@ pip install -r requirements.txt
 
 You can test the RAG pipeline interactively using several provided scripts:
 
-1. **i2b2 Evaluation Script (Plots):**
+1. **Journal Paper Results Generation:**
+   To recreate the figures and metrics tables for the research paper (evaluating K=1, 2, 3), run the following command. Outputs will be saved to the `paper_results/` directory as `metrics_table.csv`, `precision_at_k.png`, and `fpr_comparison.png`.
+   ```bash
+   python paper_results/generate_paper_results.py
+   ```
+
+2. **i2b2 Evaluation Script (Plots):**
    Runs a comparative evaluation between the standard Dense Retriever Baseline and the improved NA-RAG algorithm using a simulated i2b2 temporal dataset. It will output comparative scores (Precision@1 and Negation FP rates) and produce an `evaluation_results.png` graph demonstrating NA-RAG's superiority.
    ```bash
    python experiments/evaluate_i2b2.py
    ```
 
-2. **End-to-End Pipeline Test:**
+3. **End-to-End Pipeline Test:**
    Demonstrates the entire pipeline locally, including chunking, retrieval, reranking, and guardrail checking against a mocked clinical corpus.
    ```bash
    python experiments/e2e_test.py
    ```
 
-3. **Run Baseline Retrieval Benchmark:**
+4. **Run Baseline Retrieval Benchmark:**
    Provides an entrypoint for standard dense retrieval baseline benchmarks.
    ```bash
    python experiments/run_baselines.py

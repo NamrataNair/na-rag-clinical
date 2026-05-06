@@ -57,32 +57,26 @@ pip install -r requirements.txt
 
 ---
 
-## Running Experiments
+## Running Experiments & Evaluations
 
 You can test the RAG pipeline interactively using several provided scripts:
 
-1. **End-to-End Test (Mock Data):**
+1. **i2b2 Evaluation Script (Plots):**
+   Runs a comparative evaluation between the standard Dense Retriever Baseline and the improved NA-RAG algorithm using a simulated i2b2 temporal dataset. It will output comparative scores (Precision@1 and Negation FP rates) and produce an `evaluation_results.png` graph demonstrating NA-RAG's superiority.
+   ```bash
+   python experiments/evaluate_i2b2.py
+   ```
+
+2. **End-to-End Pipeline Test:**
    Demonstrates the entire pipeline locally, including chunking, retrieval, reranking, and guardrail checking against a mocked clinical corpus.
    ```bash
    python experiments/e2e_test.py
    ```
 
-2. **Run NA-RAG Retrieval Pipeline:**
-   Allows testing the core NA-RAG logic against mocked sample results.
-   ```bash
-   python experiments/run_na_rag.py
-   ```
-
-3. **Run Baseline RAG:**
-   Placeholder script to benchmark traditional retrieval against NA-RAG.
+3. **Run Baseline Retrieval Benchmark:**
+   Provides an entrypoint for standard dense retrieval baseline benchmarks.
    ```bash
    python experiments/run_baselines.py
-   ```
-
-4. **Run Retrieval Evaluations:**
-   Generates metrics for precision@k and Negation FP rate.
-   ```bash
-   python evaluation/evaluate_retrieval.py
    ```
 
 ---

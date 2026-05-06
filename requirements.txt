@@ -4,3 +4,5 @@ sentence-transformers
 rank-bm25
 tqdm
 pytest
+matplotlib
+pandas

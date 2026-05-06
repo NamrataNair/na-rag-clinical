@@ -16,12 +16,12 @@ Nair, N. (2025). Negation- and Assertion-Aware Retrieval-Augmented Generation fo
 
 ## Key Contributions Implemented
 
-- Assertion-aware clinical event extraction
-- Event-centric indexing of clinical notes
-- Hybrid retrieval (Dense + BM25)
-- Query-aware assertion-constrained re-ranking
-- Negation-aware evaluation metrics
-- Faithfulness checks for generated output
+- **Robust Assertion-Aware Extraction**: Uses prioritized regex matching and word boundaries to accurately capture clinical event assertions (asserted, negated, historical, hypothetical, family history) while avoiding sub-word false positives.
+- **Event-centric Indexing**: Chunks and indexes clinical notes with mapped assertion metadata.
+- **Hybrid Retrieval (Dense + BM25)**: Fuses dense representations with keyword matching.
+- **Query-Aware Assertion-Constrained Re-ranking**: Dynamically parses the user's intent. Instead of always penalizing negated conditions, if the query specifically asks for "ruled out" conditions or "family history", the system intelligently promotes those negatively-asserted findings to the top.
+- **Negation-Aware Evaluation Metrics**: Evaluates `precision@k` specifically for asserted traits, and measures Negation False Positive Rates.
+- **Faithfulness Checks**: Post-generation guardrails to ensure the LLM doesn't incorrectly assert a condition that the evidence marks as negated.
 
 ---
 
@@ -47,6 +47,8 @@ Each document should contain sentence-level annotations for:
 
 ## Installation
 
+We recommend using a virtual environment.
+
 ```bash
 python -m venv venv
 source venv/bin/activate
@@ -57,23 +59,39 @@ pip install -r requirements.txt
 
 ## Running Experiments
 
-You can run the end-to-end pipeline on a mock clinical corpus:
-```bash
-python experiments/e2e_test.py
-```
+You can test the RAG pipeline interactively using several provided scripts:
 
-To run baseline or other scripts:
-```bash
-python experiments/run_baselines.py
-python experiments/run_na_rag.py
-python evaluation/evaluate_retrieval.py
-```
+1. **End-to-End Test (Mock Data):**
+   Demonstrates the entire pipeline locally, including chunking, retrieval, reranking, and guardrail checking against a mocked clinical corpus.
+   ```bash
+   python experiments/e2e_test.py
+   ```
+
+2. **Run NA-RAG Retrieval Pipeline:**
+   Allows testing the core NA-RAG logic against mocked sample results.
+   ```bash
+   python experiments/run_na_rag.py
+   ```
+
+3. **Run Baseline RAG:**
+   Placeholder script to benchmark traditional retrieval against NA-RAG.
+   ```bash
+   python experiments/run_baselines.py
+   ```
+
+4. **Run Retrieval Evaluations:**
+   Generates metrics for precision@k and Negation FP rate.
+   ```bash
+   python evaluation/evaluate_retrieval.py
+   ```
 
 ---
 
 ## Testing
 
-We use `pytest` for validating the end-to-end extraction and negation query behaviors. To execute tests:
+This project uses `pytest` for rigorous unit and integration testing across all pipeline modules. The test suite covers logic precedence, guardrail validity, dense retrieval accuracy, and dynamic query-aware reranking intent.
+
+To execute the test suite:
 
 ```bash
 python -m pytest tests/
